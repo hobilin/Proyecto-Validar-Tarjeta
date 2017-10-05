@@ -1,4 +1,4 @@
-#__Validando Tarjeta de Crédito__
+# __Validando Tarjeta de Crédito__
 
 ##*Pseudocódigo*
 1. Iniciar.
@@ -49,5 +49,9 @@ segundo for con variable j que recorra los elementos en las posiciones impares d
 23. Finalizar.
 
 
-###*Diagrama de Flujo*
+### *Diagrama de Flujo*
+Imagen png
 ![Diagrama Tarjeta](C:/Users/Viviana/Desktop/DiagramaVT.png "Diagrama Validando Tarjeta")
+
+Enlace
+[Diagrama Validar Tarjeta de Crédito](https://www.dropbox.com/s/ht5zihtbk1cxzsx/DiagramaVT.png?dl=0)
