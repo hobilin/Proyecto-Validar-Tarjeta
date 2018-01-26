@@ -1,6 +1,6 @@
 # __Validando Tarjeta de Crédito__
 
-##*Pseudocódigo*
+## *Pseudocódigo*
 1. Iniciar.
 
 2. Crear función isValidCard() que contenga la fórmula del Algorítmo de Luhn para saber si una tarjeta de crédito es válida o no.

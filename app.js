@@ -1,38 +1,61 @@
-//preguntando número de tarjeta por medio de um prompt
-function isValidCard(){
-  var CardNumber;
-  //que se repita la pregunta hasta que el input no sea una cadena vacía.
+/*
+ *Code that verifies if a credit card number is valid
+ *using Luhn's algorithm.
+ */
+function isValidCard() {
+  var numbers;
   do {
-  CardNumber = prompt("Por favor, ingrese el número de su Tarjeta de Crédito (sin espacios)");
-} while (CardNumber == '');
-
-  var CardNumberReversedArr = CardNumber.split("").map(Number).reverse();
-  var cardEvenMultiplied;
-  var cardEvenMultipliedArr;
-  var cardEvenPlus = [];
-  var cardOdd = [];
-  var cardEven = [];
-  var total = 0;
-  for(var i = 1; i < CardNumberReversedArr; i += 2){
-    for (var j = 0; j < array.length; j += 2) {
-      cardOdd.push(CardNumberReversedArr[j]);
-      cardEvenMultiplied = CardNumberReversedArr[i] *= 2;
-    if(cardEvenMultiplied > 9){
-      cardEvenMultipliedArr = cardEvenMultiplied.join('').split('').map(Number);
-      cardEvenPlus.push(cardEvenMultipliedArr[0] + cardEvenMultipliedArr[1]);
-    }else if (cardEvenMultiplied <= 9) {
-      cardEven.push(cardEvenMultiplied[i]);
+    numbers = prompt('Enter your credit card number. No spaces, please.');
+    /*
+     *If the user ignores the warning and uses spaces
+     *the number will be considered invalid.
+     */
+    if (numbers.trim().length !== 0) {
+      var arrReversed = numbers.split('').map(Number).reverse(); 
+      /*
+       *The input will come out as string
+       *This will convert them it into typeof numbers
+       *and reverse them.
+       */
+    } else {                                               
+      alert('Please enter a valid number');
+    }
+  } while (numbers.trim().length === 0);
+  // Whilist the user doesn't submit a number, the prompt will repeat itself.
+  var sumOdds = 0; // Will sum up the numbers at the odd positions.
+  var even = []; // Will contain the numbers at the even positions.
+  var evenByTwo = []; // Will contain the number at the even positions multiplied by two.
+  var smallerNine = []; // Will contain numbers smaller than nine.
+  var evenTotal = 0; // Will sum up the even numbers.
+  for (var odd = 0; odd < arrReversed.length; odd++) {
+    if (odd % 2 === 0) {
+      // JavaScript positions are invertes, for so even positions are actually the odds positions.
+      sumOdds += arrReversed[odd];
+    } else if (odd % 2 !== 0) {
+      even.push(arrReversed[odd]);
     }
   }
-}
-var cardEvenPlusOdd = cardOdd.concat(cardEvenPlus, cardEven);
-for(var t = 0; t < cardEvenPlusOdd.length; t++){
-  total += cardEvenPlusOdd[t];
-}
-if(total % 10 == 0){
-  document.write('Su Tarjeta de Crédito es válida');
-}else{
-  document.write('Su Tarjeta de Crédito es inválida');
-      }
+
+  for (var ev = 0; ev < even.length; ev++) {
+    evenByTwo.push(even[ev] * 2);       
+  }
+
+  for (var evTwo = 0; evTwo < evenByTwo.length; evTwo++) {
+    if (evenByTwo[evTwo] > 9) {
+      smallerNine.push(evenByTwo[evTwo] - 9);
+    } else {
+      smallerNine.push(evenByTwo[evTwo]);
     }
-    isValidCard();
+  }
+
+  for (var small = 0; small < smallerNine.length; small++) {
+    evenTotal += smallerNine[small];
+  }
+
+  if ((evenTotal + sumOdds) % 10 === 0) { 
+    alert('Hurray! your credit card is valid');   
+  } else {
+    alert('We are sorry, you credit card is invalid');
+  }
+}
+isValidCard();
